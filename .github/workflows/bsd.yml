@@ -24,9 +24,9 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
       - name: test-e2e
-        uses: vmactions/freebsd-vm@c9f815bc7aa0d34c9fdd0619b034a32d6ca7b57e  # v1.4.2
+        uses: vmactions/freebsd-vm@c46abacb49f09938ca4e1702d15d836285d694cc # v1.5.9
         with:
-          release: "15.0"
+          release: "15.1"
           copyback: false
           envs: 'GO_VERSION GNU_TAR_VERSION'
           usesh: true
@@ -324,5 +324,5 @@ jobs:
 
           echo "::group::Run End-to-End Tests"
           git config --global --add safe.directory $(pwd)
-          make test-e2e E2E_EXTRA_FLAGS='--collector.diskstats.device-include=disk[04]'
+          make test-e2e E2E_EXTRA_FLAGS='--collector.diskstats.device-include=^disk0$'
           echo "::endgroup::"
